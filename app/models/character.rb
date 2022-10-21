@@ -12,4 +12,8 @@
 class Character < ApplicationRecord
   belongs_to :movie
   belongs_to :actor
+
+  # validates(:actor_id, {:presence => true})
+  validates(:movie_id, {:presence => true})
+  validates(:name, {:presence => true})
 end
