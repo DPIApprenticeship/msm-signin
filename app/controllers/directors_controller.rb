@@ -57,4 +57,12 @@ class DirectorsController < ApplicationController
 
     redirect_to("/directors", { :notice => "Director deleted successfully."} )
   end
+
+  def youngest
+    render({ :template => "/directors/youngest.html.erb"})
+  end
+
+  def eldest
+    render({ :template => "/directors/eldest.html.erb"})
+  end
 end
