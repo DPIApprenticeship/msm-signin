@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all bookmarks
+      <%= @current_user.first_name %>'s bookmarks
     </h1>
   </div>
 </div>
@@ -16,20 +16,26 @@
 
     <form action="/insert_bookmark" method="post">
       <div>
-        <label for="user_id_box">
+        <%# <label for="user_id_box">
           User
-        </label>
+        </label> %>
 
-        <input type="text" id="user_id_box" name="query_user_id">
+        <input type="hidden" id="user_id_box" name="query_user_id" value="<%= @current_user.id %>">
       </div>
 
-      <div>
+      <%# <div>
         <label for="movie_id_box">
           Movie
-        </label>
+        </label> %>
 
-        <input type="text" id="movie_id_box" name="query_movie_id">
-      </div>
+        <%# <input type="hidden" id="movie_id_box" name="query_movie_id" >
+      </div> %>
+
+      <select name="query_movie_id">
+        <% @movies.each do |movie| %>
+          <option  value="<%= movie.id %>"><%= movie.title %></option>
+        <% end %>
+      </select>
 
       <button>
         Create bookmark

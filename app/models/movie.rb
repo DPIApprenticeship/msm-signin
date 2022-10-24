@@ -18,6 +18,9 @@ class Movie < ApplicationRecord
 
   has_many :cast, :through => :characters, :source => :actor
 
+  has_many :bookmarks
+  has_many :bookmarkers, :through => :bookmarks, :source => :users
+
   validates(:title, {:presence => true})
   validates(:director_id, {:presence => true})
   validates(:year, {:presence => true})

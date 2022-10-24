@@ -1,10 +1,19 @@
 class BookmarksController < ApplicationController
+  
+
+  
   def index
-    matching_bookmarks = Bookmark.all
 
-    @list_of_bookmarks = matching_bookmarks.order({ :created_at => :desc })
+    # matching_bookmarks = Bookmark.where({:user_id => session.fetch(:user_id)})
+    if @current_user
+      @movies = Movie.all
+      matching_bookmarks = @current_user.bookmarks
 
-    render({ :template => "bookmarks/index.html.erb" })
+      @list_of_bookmarks = matching_bookmarks.order({ :created_at => :desc })
+      render({ :template => "bookmarks/index.html.erb" })
+    else
+      redirect_to("/")
+    end
   end
 
   def show
